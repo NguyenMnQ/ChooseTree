@@ -1,0 +1,9 @@
+tai khoan user:
+teo1
+1234567890@Abcxyz
+
+tai khoan admin
+Admin	
+1234567890@Abcxyz
+
+giảm số lượng kho

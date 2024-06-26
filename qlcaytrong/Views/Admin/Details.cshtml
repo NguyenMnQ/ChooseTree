@@ -1,0 +1,81 @@
+﻿@model             SanPham
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 padding-10">
+    <h1 style="color:#5ba503; text-align:center">CHI TIẾT SẢN PHẨM</h1>
+    <hr />
+    <div> 
+        <dl class="row">
+            <dt class="col-sm-2">
+                <label asp-for="Masp" class="control-label">Tên sản phẩm</label>    
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Tensp)
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Hinh" class="control-label">Hình sản phẩm</label>
+            </dt>
+            <dd class="col-sm-10">
+                <img src="@Html.DisplayFor(model => model.Hinh)" height="100" />
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Giaban" class="control-label">Giá bán</label>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Giaban)
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Ngaycapnhat" class="control-label">Ngày cập nhật</label>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ngaycapnhat)
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Soluongton" class="control-label">Kho</label>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Soluongton)
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Mota" class="control-label">Mô tả</label>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Mota)
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Giamgia" class="control-label">Giảm giá</label>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Giamgia)
+            </dd>
+            <dt class="col-sm-2">
+                <label asp-for="Giakhuyenmai" class="control-label">Giá khuyến mãi</label>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Giakhuyenmai)
+            </dd>
+           @* <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IdDanhmucNavigation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdDanhmucNavigation.IdDanhmuc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IdthuvienNavigation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdthuvienNavigation.Idthuvien)
+            </dd>*@
+        </dl>
+    </div>
+    <div>
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Masp">Edit</a>
+        <a class="btn btn-primary" asp-action="Index">Back to List</a>
+    </div>
+
+</div>
+

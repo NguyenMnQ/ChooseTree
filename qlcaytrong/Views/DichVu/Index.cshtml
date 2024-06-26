@@ -1,0 +1,115 @@
+﻿@model IEnumerable<DichVu>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="post-slider">
+    <div class="post-wrapper">
+        <div class="post">
+            <h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #5ba503; text-align:center" class="">
+                Dịch vụ
+                <div class="row mt-5">
+                    <div class="">
+                        <div class="mainServices">
+                            <i class="fas fa-cut"></i>
+                            <div class="mainServices__content">
+                                <h3>Chăm sóc cây</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h1>
+            <img src="~/Content/images/bg_footer.jpg" alt="">
+        </div>
+    </div>
+
+</div>
+
+
+<div class="body">
+    <div class="container-fluid" style="padding: 0!important;">
+        <div style="background-image: url('../../Content/images/dv.jpg')" class="service-banner">
+            <div style="width: 730px; background-color: none; padding: 30px; border-radius: 10px; transform: translate(100px, 0);" class="">
+                <h3 class="h1-title">
+                    Bảng báo giá dịch vụ chăm sóc cây cảnh
+                </h3>
+                <p>
+                    Cây nhỏ để bàn, treo, để giá cao dưới 40cm: <i style="color: red">14.000 VNĐ</i>/1 tháng/cây.</br>
+
+                    Cây để đất, dưới sàn cao trên 40cm dưới 1m: <i style="color: red">49.000 VNĐ</i>/1 tháng/cây.</br>
+
+                    Cây để đất, dưới sàn cao hơn 1m: <i style="color: red">59.000 VNĐ</i>/1 tháng/cây.</br>
+
+                    Nếu là vườn dưới đất sẽ được tính theo m2 <i style="color: red">19.000 VNĐ</i>/1 tháng/m2.
+                </p>
+
+                <h3 class="h1-title">
+                    Bảng giá dịch vụ chăm sóc cây có thay mới miễn phí
+                </h3>
+                <p>
+                    Cây nhỏ để bàn, treo, để giá cao dưới 40cm: <i style="color: red">49.000 VNĐ</i>/1 tháng/cây.</br>
+
+                    Cây để đất, dưới sàn cao trên 40cm dưới 1m: <i style="color: red">149.000 VNĐ</i>/1 tháng/cây.</br>
+
+                    Cây để đất, dưới sàn cao hơn 1m: <i style="color: red">189.000 VNĐ</i>/1 tháng/cây.</br>
+
+                    Giá cơ bản là thế còn tùy theo giá trị của cây, để biết chính xác giá bên webcaycanh sẽ báo giá và báo lại cho bên quý khách hàng.</br>
+
+                    Nếu số lượng cây nhiều Webcaycanh sẽ cho nhân viên đến khảo sát và báo giá lại sau, với số lượng lớn sẽ được giảm giá tùy theo số lượng cây.</br>
+
+                    Nếu đơn vị ký hợp đồng trên 1 năm thì sẽ được thay cây mới miễn phí 1 lần vào đầu năm mới với những cây xấu và hỏng. (không áp dụng với cây mua ở đơn vị khác)
+                </p>
+
+                <button class="btn btn-danger mt-5 modal-toggle">Đặt lịch ngay!</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4" style="padding: 15px!important;">
+            <div style="background-color: #2885BA" class="service-list__content-box">
+                <img src="~/Content/images/dv2.jpg" alt="" height="200px">
+                <img src="~/Content/images/dv3.jpg" alt="" height="200px">
+            </div>
+        </div>
+        <div class="col-lg-4" style="padding: 15px!important;">
+            <div style="background-color: #B56256" class="service-list__content-box">
+                <img src="~/Content/images/dv4.jpg" alt="" height="200px">
+                <img src="~/Content/images/dv7.jpg" alt="" height="200px">
+            </div>
+        </div>
+        <div class="col-lg-4" style="padding: 15px!important;">
+            <div style="background-color: #5C9CCA" class="service-list__content-box">
+                <img src="~/Content/images/dv5.jpg" alt="" height="200px">
+                <img src="~/Content/images/dv6.jpg" alt="" height="200px">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="service-text mb30">
+        <div class="service-text__content">
+<h2 class="h2-title" style="text-align:center">Chăm sóc toàn diện, tận tâm và xuất phát từ tình yêu với cây chính là tôn chỉ của mọi dịch vụ luôn sẵn sàng đón tiếp quý khách!</h2>
+        </div>
+        </br>
+        <div class="">
+            <h2 style="text-align:center; color:#5ba503 ">ĐÁNH GIÁ TỪ KHÁCH HÀNG</h2>
+            <img class="banner-service" src="~/Content/images/dv1.png" alt="">
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    // Quick & dirty toggle to demonstrate modal toggle behavior
+    $(document).ready(function () {
+        $('.modal-toggle').on('click', function (e) {
+            e.preventDefault();
+            $('.modal').toggleClass('is-visible');
+        });
+    })
+
+</script>

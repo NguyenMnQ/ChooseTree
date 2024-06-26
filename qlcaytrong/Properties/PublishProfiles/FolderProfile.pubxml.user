@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Study\final\HK3_22_23_NMQ\qlcaytrong\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2024-05-13T09:46:34.4165105Z;False|2024-05-13T16:44:54.2850252+07:00;True|2024-05-13T16:09:53.4997670+07:00;</History>
+    <LastFailureDetails />
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AppDb">
+      <Value>Data Source=MQUAN\SQLEXPRESS%3bDatabase=treestore%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,33 @@
+﻿@model             DanhMuc
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 padding-10">
+    <h1 style="color:#5ba503; text-align:center">BẠN CÓ CHẮC MUỐN XÓA DANH MỤC NÀY KHÔNG ?</h1>
+    <div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+                <label asp-for="Tendanhmuc" class="control-label">Tên danh mục</label>
+            </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tendanhmuc)
+        </dd>
+        <dt class = "col-sm-2">
+                <label asp-for="ParentId" class="control-label">Loại danh mục</label>
+            </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ParentId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdDanhmuc" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </form>
+</div>
+</div>

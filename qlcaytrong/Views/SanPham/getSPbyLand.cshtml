@@ -1,0 +1,584 @@
+﻿@*@model IEnumerable<qlcaytrong.Models.DanhMuc>*@
+@model IEnumerable<SanPham>
+@{
+    ViewData["Title"] = "getSPbyLand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Style tab links */
+        .tablink {
+            background-color: #5ba503;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 16.667%;
+        }
+
+            .tablink:hover {
+                background-color: white;
+                color: #5ba503;
+            }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Datcat {
+            background-color: white;
+        }
+
+        #Datthit {
+            background-color: white;
+        }
+
+        #Datphusa {
+            background-color: white;
+        }
+
+        #Datdo {
+            background-color: white;
+        }
+
+        #Datphen {
+            background-color: white;
+        }
+
+        #Datmin {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="body" style="padding-top: 30px; margin-top: 50px;">
+        <button class="tablink" onclick="openPage('Datcat', this, 'green')">Đất cát</button>
+        <button class="tablink" onclick="openPage('Datthit', this, 'green')" id="defaultOpen">Đất thịt</button>
+        <button class="tablink" onclick="openPage('Datphusa', this, 'green')">Đất phù sa</button>
+        <button class="tablink" onclick="openPage('Datdo', this, 'green')">Đất đỏ (bazan)</button>
+        <button class="tablink" onclick="openPage('Datphen', this, 'green')">Đất phèn</button>
+        <button class="tablink" onclick="openPage('Datmin', this, 'green')">Đất mịn</button>
+
+        <div id="Datcat" class="tabcontent">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="~/content/images/dat-cat-trong-cay.jpg" width="300" height="200" />
+                </div>
+                <div class="col-sm-8" style="color: #5ba503">
+                    <p>Đất cát là loại đất có hạt nhỏ và rời rạc. Đất cát có khả năng thoát nước rất nhanh và không giữ được chất dinh dưỡng. Đây là loại đất khô ráo và thiếu màu mỡ. Để trồng cây trên đất cát, người ta phải bón phân và tưới nước thường xuyên. Đồng thời, người ta cũng có thể trộn đất cát với các loại đất khác để tạo ra các loại đất mới như đất thịt hay đất phù sa.</p>
+                    <p>
+                        - Các loại cây ăn quả chịu hạn như dưa hấu, dưa leo, bí ngòi, bí xanh, ổi, xoài, cam, chanh...</br>
+
+                        - Các loại cây hoa chịu nắng như hoa hồng, hoa hướng dương, hoa cúc, hoa ly...</br>
+
+                        - Các loại cây kiểng chịu khô như xương rồng, sen đá, sanh, mai...</br>
+
+                        - Các loại cây công nghiệp như lúa mì, lúa mạch, khoai lang...
+                    </p>
+                </div>
+            </div>
+            <h2 style="color: crimson">Các loại cây phù hợp</h2>
+            <div class="row">
+                @foreach (var item in ViewBag.getSP3)
+                {
+                    <div class="col-lg-2_5 col-md-4 col-6 post2">
+                        <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                            <div class="product">
+                                <div class="product__img">
+                                    <img src="@item.Hinh" alt="">
+                                </div>
+                                @if (item.Giamgia == 0 || item.Giamgia == null)
+                                {
+                                    <div class="product__sale">
+                                        <h4>Mới</h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="product__sale">
+                                        <h4>@item.Giamgia %</h4>
+                                    </div>
+                                }
+                                <div class="product__content">
+                                    <div class="product__title">
+                                        @item.Tensp
+                                    </div>
+
+                                    @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                    {
+                                        <div class="product__pride-oldPride">
+                                            <span class="Price">
+                                                <bdi>
+                                                    @string.Format("{0:N0}", item.Giaban)
+                                                    <span class="currencySymbol">₫</span>
+                                                </bdi>
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product__pride-newPride">
+                                    <span class="Price">
+                                        <bdi>
+                                            @string.Format("{0:N0}", item.Giakhuyenmai)
+                                            <span class="currencySymbol">₫</span>
+                                        </bdi>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+
+        <div id="Datthit" class="tabcontent">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="~/content/images/dat-thit-trong-cay.jpg" width="300" height="200" />
+                </div>
+                <div class="col-sm-8" style="color: #5ba503">
+                    <p>
+                        Đất thịt, còn được gọi là đất mùn, là sự kết hợp của ba loại đất: đất cát, đất phù sa và đất sét. Nó có những ưu điểm đáng kể của ba loại đất này, đặc biệt là khả năng giữ nước tốt và giàu chất dinh dưỡng. Rễ cây được cung cấp đầy đủ nước, không khí và không gian để phát triển, làm tăng khả năng sinh trưởng và phát triển của cây. Đất thịt được tạo ra bằng cách kết hợp ba thành phần chính là phù sa, cát và sét, kèm theo chất hữu cơ, nước và không khí. Thành phần phù sa chiếm tỷ lệ từ 28 - 50%, đất sét chiếm 7 - 27% và tỷ lệ cát là 52% hoặc ít hơn. Nếu tỷ lệ cát trong đất thịt cao hơn, loại đất này sẽ được gọi là đất cát pha. Ngược lại, nếu tỷ lệ đất sét lớn hơn, nó sẽ được gọi là đất thịt pha sét.
+                    </p>
+                    <p>
+                        Đất thịt là loại đất rất phù hợp cho hoạt động canh tác nông nghiệp. Nhờ vào khả năng giữ nước tốt, đất thịt có thể hỗ trợ cho việc trồng trọt trong điều kiện khô hạn. Đồng thời, đất thịt cũng chứa nhiều chất dinh dưỡng và có khả năng hấp thụ chất dinh dưỡng tốt từ phân bón, giúp cho cây trồng phát triển khỏe mạnh.
+                    </p>
+                    <p>
+                        - Hầu hết các loại cây ăn quả như táo, lê, mận, nho...</br>
+
+                        - Hầu hết các loại cây hoa như hoa tulip, hoa hồng, hoa cẩm tú cầu...</br>
+
+                        - Hầu hết các loại cây kiểng như mai, đào, quất, cúc...</br>
+
+                        - Hầu hết các loại cây công nghiệp như ngô, khoai tây, đậu tương...
+                    </p>
+                </div>
+            </div>
+            <h2 style="color: crimson">Các loại cây phù hợp</h2>
+            <div class="row">
+                @foreach (var item in ViewBag.getSP4)
+                {
+                    <div class="col-lg-2_5 col-md-4 col-6 post2">
+                        <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                            <div class="product">
+                                <div class="product__img">
+                                    <img src="@item.Hinh" alt="">
+                                </div>
+                                @if (item.Giamgia == 0 || item.Giamgia == null)
+                                {
+                                    <div class="product__sale">
+                                        <h4>Mới</h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="product__sale">
+                                        <h4>@item.Giamgia %</h4>
+                                    </div>
+                                }
+                                <div class="product__content">
+                                    <div class="product__title">
+                                        @item.Tensp
+                                    </div>
+
+                                    @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                    {
+                                        <div class="product__pride-oldPride">
+                                            <span class="Price">
+                                                <bdi>
+                                                    @string.Format("{0:N0}", item.Giaban)
+                                                    <span class="currencySymbol">₫</span>
+                                                </bdi>
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product__pride-newPride">
+                                    <span class="Price">
+                                        <bdi>
+                                            @string.Format("{0:N0}", item.Giakhuyenmai)
+                                            <span class="currencySymbol">₫</span>
+                                        </bdi>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+
+        <div id="Datphusa" class="tabcontent">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="~/content/images/dat-phu-sa-trong-cay.jpg" width="300" height="200" />
+                </div>
+                <div class="col-sm-8" style="color: #5ba503">
+                    <p>
+                        Đất phù sa là loại đất có hạt nhỏ hơn cát nhưng lớn hơn sét. Đây là loại đất màu mỡ và giàu chất dinh dưỡng. Đặc biệt, khi có lũ lụt hay triều cường, các lớp phù sa được mang theo dòng nước từ các khu vực cao xuống các khu vực thấp, tạo ra các vùng đồng bằng màu mỡ
+                    </p>
+
+                    <p>
+                        - Các loại cây ăn quả phổ biến như cam, quýt, bưởi, xoài, chuối, thanh long...</br>
+
+                        - Các loại cây hoa đẹp như hoa mai, hoa đào, hoa ly, hoa cẩm chướng...</br>
+
+                        - Các loại cây kiểng đa dạng như sanh, mai vàng, mai chiếu thuỷ, mai tết...</br>
+
+                        - Các loại cây công nghiệp quan trọng như lúa nước, bông, điều, tiêu...
+                    </p>
+                </div>
+            </div>
+            <h2 style="color: crimson">Các loại cây phù hợp</h2>
+            <div class="row">
+                @foreach (var item in ViewBag.getSP5)
+                {
+                    <div class="col-lg-2_5 col-md-4 col-6 post2">
+                        <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                            <div class="product">
+                                <div class="product__img">
+                                    <img src="@item.Hinh" alt="">
+                                </div>
+                                @if (item.Giamgia == 0 || item.Giamgia == null)
+                                {
+                                    <div class="product__sale">
+                                        <h4>Mới</h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="product__sale">
+                                        <h4>@item.Giamgia %</h4>
+                                    </div>
+                                }
+                                <div class="product__content">
+                                    <div class="product__title">
+                                        @item.Tensp
+                                    </div>
+
+                                    @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                    {
+                                        <div class="product__pride-oldPride">
+                                            <span class="Price">
+                                                <bdi>
+                                                    @string.Format("{0:N0}", item.Giaban)
+                                                    <span class="currencySymbol">₫</span>
+                                                </bdi>
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product__pride-newPride">
+                                    <span class="Price">
+                                        <bdi>
+                                            @string.Format("{0:N0}", item.Giakhuyenmai)
+                                            <span class="currencySymbol">₫</span>
+                                        </bdi>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+
+        <div id="Datdo" class="tabcontent">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="~/content/images/dat-do-bazan-trong-cay.jpg" width="300" height="200" />
+                </div>
+                <div class="col-sm-8" style="color: #5ba503">
+                    <p>
+                        Đất đỏ bazan có đặc điểm là chua, có hàm lượng oxit sắt và nhôm cao, tầng đất dày, kết cấu xốp và dễ vỡ. Đất đỏ bazan có khả năng thoát nước tốt nhưng cũng dễ bị xói mòn khi có mưa to hay lũ. Đất đỏ bazan thiếu vôi, magie, phốt phát, nitơ, mùn và kali. Do đó cần bón phân hữu cơ và vôi để cải thiện tính chất của đất. Đây là một loại đất có nhiều tiềm năng cho nông nghiệp, nhưng cũng cần áp dụng các biện pháp quản lý và bảo vệ đất hiệu quả.
+                    </p>
+
+                    <p>
+                        - Các loại cây lấy củ như gừng, khoai tây, khoai lang.</br>
+
+                        - Các loại rau như cải, súp lơ, xà lách, rau thơm.</br>
+
+                        - Các loại cây ăn trái như mít, ổi, chanh, mận.</br>
+
+                        - Các loại cây công nghiệp như cao su, hồ tiêu, cà phê, hạt điều.
+                    </p>
+                </div>
+            </div>
+            <h2 style="color: crimson">Các loại cây phù hợp</h2>
+            <div class="row">
+                @foreach (var item in ViewBag.getSP6)
+                {
+                    <div class="col-lg-2_5 col-md-4 col-6 post2">
+                        <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                            <div class="product">
+                                <div class="product__img">
+                                    <img src="@item.Hinh" alt="">
+                                </div>
+                                @if (item.Giamgia == 0 || item.Giamgia == null)
+                                {
+                                    <div class="product__sale">
+                                        <h4>Mới</h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="product__sale">
+                                        <h4>@item.Giamgia %</h4>
+                                    </div>
+                                }
+                                <div class="product__content">
+                                    <div class="product__title">
+                                        @item.Tensp
+                                    </div>
+
+                                    @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                    {
+                                        <div class="product__pride-oldPride">
+                                            <span class="Price">
+                                                <bdi>
+                                                    @string.Format("{0:N0}", item.Giaban)
+                                                    <span class="currencySymbol">₫</span>
+                                                </bdi>
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product__pride-newPride">
+                                    <span class="Price">
+                                        <bdi>
+                                            @string.Format("{0:N0}", item.Giakhuyenmai)
+                                            <span class="currencySymbol">₫</span>
+                                        </bdi>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div id="Datphen" class="tabcontent">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="~/content/images/dat-phen-trong-cay.jpg" width="300" height="200" />
+                </div>
+                <div class="col-sm-8" style="color: #5ba503">
+                    <p>
+                        Đất phèn, hay còn được gọi là đất nhiễm phèn là loại đất chứa nhiều gốc sunfat và có độ pH thấp. Khác với những loại đất trong nhà kính trồng rau, các vùng hay xuất hiện đất phèn là đồng bằng, ven biển hoặc những nơi có nhiều xác sinh vật chứa lưu huỳnh.
+                    </p>
+
+                    <p>
+                        - Các loại rau chịu phèn tốt: rau muống, su hào, rau ngót, rau dền.</br>
+
+                        - Các loại cây chịu phèn tốt: mía, bắp ngô, cây chè, bạch đàn, thanh long, chôm chôm,....</br>
+                    </p>
+                </div>
+            </div>
+            <h2 style="color: crimson">Các loại cây phù hợp</h2>
+            <div class="row">
+                @foreach (var item in ViewBag.getSP7)
+                {
+                    <div class="col-lg-2_5 col-md-4 col-6 post2">
+                        <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                            <div class="product">
+                                <div class="product__img">
+                                    <img src="@item.Hinh" alt="">
+                                </div>
+                                @if (item.Giamgia == 0 || item.Giamgia == null)
+                                {
+                                    <div class="product__sale">
+                                        <h4>Mới</h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="product__sale">
+                                        <h4>@item.Giamgia %</h4>
+                                    </div>
+                                }
+                                <div class="product__content">
+                                    <div class="product__title">
+                                        @item.Tensp
+                                    </div>
+
+                                    @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                    {
+                                        <div class="product__pride-oldPride">
+                                            <span class="Price">
+                                                <bdi>
+                                                    @string.Format("{0:N0}", item.Giaban)
+                                                    <span class="currencySymbol">₫</span>
+                                                </bdi>
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product__pride-newPride">
+                                    <span class="Price">
+                                        <bdi>
+                                            @string.Format("{0:N0}", item.Giakhuyenmai)
+                                            <span class="currencySymbol">₫</span>
+                                        </bdi>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="Datmin" class="tabcontent">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="~/content/images/dat-min-trong-cay.jpg" width="300" height="200" />
+                </div>
+                <div class="col-sm-8" style="color: #5ba503">
+                    <p>
+                        Đất mịn hay còn gọi là đất sét là loại đất có hạt nhỏ nhất và dính chặt với nhau. Đất sét có khả năng giữ nước và chất dinh dưỡng rất cao. Tuy nhiên, đất sét cũng có nhược điểm là khó thoát nước và khó thông khí. Điều này làm ảnh hưởng đến sự phát triển của rễ cây và các sinh vật đất. Để trồng cây trên đất sét, người ta phải xới lên đất để tạo ra các khe hở cho không khí và nước lưu thông. Ngoài ra, người ta cũng có thể trộn đất sét với các loại đất khác để cải thiện kết cấu và tính chất của đất.
+                    </p>
+
+                    <p>
+                        - Các loại cây ăn quả chịu ẩm như chuối, mít, sầu riêng, dừa, bưởi, vải...</br>
+
+                        - Các loại cây hoa chịu ướt như hoa lan, hoa sen, hoa súng, hoa đỗ quyên...</br>
+
+                        - Các loại cây kiểng chịu đọng nước như trúc, tre, lau sậy, cỏ voi...</br>
+
+                        - Các loại cây công nghiệp như lúa nước, mía, cao su, cà phê...
+                    </p>
+                </div>
+            </div>
+            <h2 style="color: crimson">Các loại cây phù hợp</h2>
+            <div class="row">
+                @foreach (var item in ViewBag.getSP8)
+                {
+                    <div class="col-lg-2_5 col-md-4 col-6 post2">
+                        <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                            <div class="product">
+                                <div class="product__img">
+                                    <img src="@item.Hinh" alt="">
+                                </div>
+                                @if (item.Giamgia == 0 || item.Giamgia == null)
+                                {
+                                    <div class="product__sale">
+                                        <h4>Mới</h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="product__sale">
+                                        <h4>@item.Giamgia %</h4>
+                                    </div>
+                                }
+                                <div class="product__content">
+                                    <div class="product__title">
+                                        @item.Tensp
+                                    </div>
+
+                                    @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                    {
+                                        <div class="product__pride-oldPride">
+                                            <span class="Price">
+                                                <bdi>
+                                                    @string.Format("{0:N0}", item.Giaban)
+                                                    <span class="currencySymbol">₫</span>
+                                                </bdi>
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product__pride-newPride">
+                                    <span class="Price">
+                                        <bdi>
+                                            @string.Format("{0:N0}", item.Giakhuyenmai)
+                                            <span class="currencySymbol">₫</span>
+                                        </bdi>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function openPage(pageName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+
+</body>
+</html>

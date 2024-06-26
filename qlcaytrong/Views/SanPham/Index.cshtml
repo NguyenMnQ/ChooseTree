@@ -1,0 +1,630 @@
+﻿@model IEnumerable<SanPham>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="post-slider">
+    <i class="fa fa-chevron-left prev" aria-hidden="true"></i>
+    <i class="fa fa-chevron-right next" aria-hidden="true"></i>
+
+    <div class="post-wrapper">
+        <div class="post">
+            <img src="~/Content/images/BR1.jpg" alt="">
+        </div>
+        <div class="post">
+            <img src="~/Content/images/BR3.jpg" alt="">
+        </div>
+        <div class="post">
+            <img src="~/Content/images/BR4.jpg" alt="">
+        </div>
+    </div>
+</div>
+</br>
+<!-- Sản phẩm nổi bật -->
+<div class="body">
+
+    <div class="body__mainTitle">
+        <h2 style="text-align: center">Sản phẩm nổi bật</h2>
+    </div>
+
+    <div class="post-slider2">
+        <i class="fa fa-chevron-left prev2" aria-hidden="true"></i>
+        <i class="fa fa-chevron-right next2" aria-hidden="true"></i>
+
+        <div class="row">
+            <div class="post-wrapper2">
+                @foreach (var item in ViewBag.getSPNoiBat)
+                {
+                    <div class="col-lg-2_4 col-md-4 col-6 post2">
+                        <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                            <div class="product">
+                                <div class="product__img">
+                                    <img src="@item.Hinh" alt="">
+                                </div>
+                                @if (item.Giamgia == 0 || item.Giamgia == null)
+                                {
+                                    <div class="product__sale">
+                                        <h4>Mới</h4>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="product__sale">
+                                        <h4>@item.Giamgia %</h4>
+                                    </div>
+                                }
+                                <div class="product__content">
+                                    <div class="product__title">
+                                        @item.Tensp
+
+                                    </div>                 
+                                    @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                    {
+                                        <div class="product__pride-oldPride">
+                                            <span class="Price">
+                                                <bdi>
+                                                    @string.Format("{0:N0}", item.Giaban)
+                                                    <span class="currencySymbol">₫</span>
+                                                </bdi>
+                                            </span>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="product__pride-newPride">
+                                    <span class="Price">
+                                        <bdi>
+                                            @string.Format("{0:N0}", item.Giakhuyenmai)
+                                            <span class="currencySymbol">₫</span>
+                                        </bdi>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="banner">
+    <div class="body__mainTitle">
+        <h2 style="text-align: center">Dịch vụ của chúng tôi</h2>
+    </div>
+
+    <div class="banner-top banner-top-2 row">
+        <div class="col-md-3 col-sm-6">
+            <a href="@Url.Action("Index", "Home")" class="banner-top-2-child" style="background-color: tomato;">
+                <div class="text-white">Đứng đầu lĩnh vực Online về cây trồng</div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <a href="@Url.Action("Index", "Home")" class="banner-top-2-child" style="background-color: #5C9CCA;">
+                <div class="text-white" style="margin: 0 auto;">Bảo hành sau khi mua cây</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <a href="@Url.Action("Index", "Home")" class="banner-top-2-child" style="background-color: #C67B36;">
+                <div class="text-white" style="margin: 0 auto;">Tư vấn nhiệt tình, chuyên nghiệp</div>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <a href="@Url.Action("Index", "Home")" class="banner-top-2-child" style="background-color: #AB5D58;">
+                <div class="text-white">Hỗ trợ chăm sóc trọn đời </div>
+            </a>
+        </div>
+        @*<div class="col-md-3 col-sm-6">
+        <img src="~/Content/images/ad1.jpeg" alt="ad1" width="100" height="100" style="opacity: 0.3"/>
+        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 18px;">
+        Đứng đầu lĩnh vực Online về cây trồng
+        </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+        <img src="~/Content/images/ad2.jpg" alt="ad1" width="100" height="100" style="opacity: 0.3"/>
+        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 18px;">
+        Bảo hành sau khi mua cây
+        </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+        <img src="~/Content/images/ad3.jpg" alt="ad1" width="100" height="100" style="opacity: 0.3"/>
+        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 18px;">
+        Tư vấn nhiệt tình, chuyên nghiệp
+        </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+        <img src="~/Content/images/ad4.jpg" alt="ad1" width="100" height="100" style="opacity: 0.3" />
+        <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 18px;">
+        Hỗ trợ chăm sóc trọn đời
+        </div>
+        </div>*@
+    </div>
+</div>
+
+<!-- Tất cả sản phẩm -->
+<div class="body">
+    <div class="body__mainTitle" style="display: flex; justify-content: space-between;">
+        <h2>TẤT CẢ SẢN PHẨM</h2>
+    </div>
+
+    <div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-6 mb-3">
+                    <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                        <div class="product">
+                            <div class="product__img">
+                                <img src="@Html.DisplayFor(modelItem => item.Hinh)" alt="">
+                            </div>
+                            @if (item.Giamgia == 0 || item.Giamgia == null)
+                            {
+                                <div class="product__sale">
+                                    <h4>Mới</h4>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product__sale">
+                                    <h4>@item.Giamgia %</h4>
+                                </div>
+                            }
+                            <div class="product__content">
+                                <div class="product__title">
+                                    @Html.DisplayFor(modelItem => item.Tensp)
+                                </div>
+
+                                @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                {
+                                    <div class="product__pride-oldPride">
+                                        <span class="Price">
+                                            <bdi>
+                                                @string.Format("{0:N0}", item.Giaban)
+                                                <span class="currencySymbol">₫</span>
+                                            </bdi>
+                                        </span>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="product__pride-newPride">
+                                <span class="Price">
+                                    <bdi>
+                                        @string.Format("{0:N0}", item.Giakhuyenmai)
+                                        <span class="currencySymbol">₫</span>
+                                    </bdi>
+                                </span>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+
+        <center style="margin-top: 30px;">
+            <a asp-controller="SanPham" asp-action="TatCaSanPham" class="btn text-white" style="background: crimson;">Xem thêm</a>
+        </center>
+
+    </div>
+
+</div>
+<!-- End Tất cả sản phẩm -->
+</br>
+<div class="body">
+    <div class="body__mainTitle d-flex align-items-center">
+        <h2>Các cây bán chạy</h2>
+        <div class="d-flex justify-content-center align-items-center ml-5" style="font-size: 26px;">
+            <div id="fordog" class="text-secondary activeColor mr-3"></div>
+            @*<div id="fordog2" class="text-secondary mr-3">Sen đá</div>
+            <div id="fordog3" class="text-secondary">Cây để bàn</div>*@
+        </div>
+    </div>
+
+    <div class="dogfood active">
+        <div class="row">
+            @foreach (var item in ViewBag.getSP3)
+            {
+                <div class="col-lg-2_5 col-md-4 col-6 post2">
+                    <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                        <div class="product">
+                            <div class="product__img">
+                                <img src="@item.Hinh" alt="">
+                            </div>
+                            @if (item.Giamgia == 0 || item.Giamgia == null)
+                            {
+                                <div class="product__sale">
+                                    <h4>Mới</h4>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product__sale">
+                                    <h4>@item.Giamgia %</h4>
+                                </div>
+                            }
+                            <div class="product__content">
+                                <div class="product__title">
+                                    @item.Tensp
+                                </div>
+
+                                @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                {
+                                    <div class="product__pride-oldPride">
+                                        <span class="Price">
+                                            <bdi>
+                                                @string.Format("{0:N0}", item.Giaban)
+                                                <span class="currencySymbol">₫</span>
+                                            </bdi>
+                                        </span>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="product__pride-newPride">
+                                <span class="Price">
+                                    <bdi>
+                                        @string.Format("{0:N0}", item.Giakhuyenmai)
+                                        <span class="currencySymbol">₫</span>
+                                    </bdi>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+    @*<div class="dogstyle">
+        <div class="row">
+            @foreach (var item in ViewBag.getSP4)
+            {
+                <div class="col-lg-2_5 col-md-4 col-6 post2">
+                    <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                        <div class="product">
+                            <div class="product__img">
+                                <img src="@item.Hinh" alt="">
+                            </div>
+                            @if (item.Giamgia == 0 || item.Giamgia == null)
+                            {
+                                <div class="product__sale">
+                                    <h4>Mới</h4>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product__sale">
+                                    <h4>@item.Giamgia %</h4>
+                                </div>
+                            }
+                            <div class="product__content">
+                                <div class="product__title">
+                                    @item.Tensp
+                                </div>
+
+                                @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                {
+                                    <div class="product__pride-oldPride">
+                                        <span class="Price">
+                                            <bdi>
+                                                @string.Format("{0:N0}", item.Giaban)
+                                                <span class="currencySymbol">₫</span>
+                                            </bdi>
+                                        </span>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="product__pride-newPride">
+                                <span class="Price">
+                                    <bdi>
+                                        @string.Format("{0:N0}", item.Giakhuyenmai)
+                                        <span class="currencySymbol">₫</span>
+                                    </bdi>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            }
+
+        </div>
+    </div>
+
+    <div class="dogequip">
+        <div class="row">
+            @foreach (var item in ViewBag.getSP5)
+            {
+                <div class="col-lg-2_5 col-md-4 col-6 post2">
+                    <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                        <div class="product">
+                            <div class="product__img">
+                                <img src="@item.Hinh" alt="">
+                            </div>
+                            @if (item.Giamgia == 0 || item.Giamgia == null)
+                            {
+                                <div class="product__sale">
+                                    <h4>Mới</h4>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product__sale">
+                                    <h4>@item.Giamgia %</h4>
+                                </div>
+                            }
+                            <div class="product__content">
+                                <div class="product__title">
+                                    @item.Tensp
+                                </div>
+
+                                @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                {
+                                    <div class="product__pride-oldPride">
+                                        <span class="Price">
+                                            <bdi>
+                                                @string.Format("{0:N0}", item.Giaban)
+                                                <span class="currencySymbol">₫</span>
+                                            </bdi>
+                                        </span>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="product__pride-newPride">
+                                <span class="Price">
+                                    <bdi>
+                                        @string.Format("{0:N0}", item.Giakhuyenmai)
+                                        <span class="currencySymbol">₫</span>
+                                    </bdi>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            }
+
+        </div>
+    </div>*@
+</div>
+
+<div class="banner">
+    <div class="banner-top">
+        <img src="~/Content/images/sale1.jpg" style="border-style: double; border-color: lawngreen;" />
+    </div>
+</div>
+
+
+@*<div class="body">
+    <div class="body__mainTitle d-flex align-items-center">
+        <h2>Các loại khác</h2>
+        <div class="d-flex justify-content-center align-items-center ml-5" style="font-size: 26px;">
+        </div>
+    </div>
+    <div id="forcat" class="text-secondary activeColor mr-3">Cây công trình</div>
+
+    <div class="sp6 active">
+        <div class="row">
+            @foreach (var item in ViewBag.getSP6)
+            {
+                <div class="col-lg-2_5 col-md-4 col-6 post2">
+                    <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                        <div class="product">
+                            <div class="product__img">
+                                <img src="@item.Hinh" alt="">
+                            </div>
+                            @if (item.Giamgia == 0 || item.Giamgia == null)
+                            {
+                                <div class="product__sale">
+                                    <h4>Mới</h4>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product__sale">
+                                    <h4>@item.Giamgia %</h4>
+                                </div>
+                            }
+                            <div class="product__content">
+                                <div class="product__title">
+                                    @item.Tensp
+                                </div>
+
+                                @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                {
+                                    <div class="product__pride-oldPride">
+                                        <span class="Price">
+                                            <bdi>
+                                                @string.Format("{0:N0}", item.Giaban)
+                                                <span class="currencySymbol">₫</span>
+                                            </bdi>
+                                        </span>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="product__pride-newPride">
+                                <span class="Price">
+                                    <bdi>
+                                        @string.Format("{0:N0}", item.Giakhuyenmai)
+                                        <span class="currencySymbol">₫</span>
+                                    </bdi>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+    <div id="forcat2" class="text-secondary mr-3">Cây để bàn</div>
+
+    <div class="catstyle">
+        <div class="row">
+            @foreach (var item in ViewBag.getSP7)
+            {
+                <div class="col-lg-2_5 col-md-4 col-6 post2">
+                    <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                        <div class="product">
+                            <div class="product__img">
+                                <img src="@item.Hinh" alt="">
+                            </div>
+                            @if (item.Giamgia == 0 || item.Giamgia == null)
+                            {
+                                <div class="product__sale">
+                                    <h4>Mới</h4>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product__sale">
+                                    <h4>@item.Giamgia %</h4>
+                                </div>
+                            }
+                            <div class="product__content">
+                                <div class="product__title">
+                                    @item.Tensp
+                                </div>
+
+                                @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                {
+                                    <div class="product__pride-oldPride">
+                                        <span class="Price">
+                                            <bdi>
+                                                @string.Format("{0:N0}", item.Giaban)
+                                                <span class="currencySymbol">₫</span>
+                                            </bdi>
+                                        </span>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="product__pride-newPride">
+                                <span class="Price">
+                                    <bdi>
+                                        @string.Format("{0:N0}", item.Giakhuyenmai)
+                                        <span class="currencySymbol">₫</span>
+                                    </bdi>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="sp8">
+        <div class="row">
+            @foreach (var item in ViewBag.getSP8)
+            {
+                <div class="col-lg-2_5 col-md-4 col-6 post2">
+                    <a asp-controller="SanPham" asp-action="Details" asp-route-id="@item.Masp">
+                        <div class="product">
+                            <div class="product__img">
+                                <img src="@item.Hinh" alt="">
+                            </div>
+                            @if (item.Giamgia == 0 || item.Giamgia == null)
+                            {
+                                <div class="product__sale">
+                                    <h4>Mới</h4>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="product__sale">
+                                    <h4>@item.Giamgia %</h4>
+                                </div>
+                            }
+                            <div class="product__content">
+                                <div class="product__title">
+                                    @item.Tensp
+                                </div>
+
+                                @if (!(item.Giamgia == 0 || item.Giamgia == null))
+                                {
+                                    <div class="product__pride-oldPride">
+                                        <span class="Price">
+                                            <bdi>
+                                                @string.Format("{0:N0}", item.Giaban)
+                                                <span class="currencySymbol">₫</span>
+                                            </bdi>
+                                        </span>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="product__pride-newPride">
+                                <span class="Price">
+                                    <bdi>
+                                        @string.Format("{0:N0}", item.Giakhuyenmai)
+                                        <span class="currencySymbol">₫</span>
+                                    </bdi>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>*@
+
+<div class="banner">
+
+    <div class="row banner-top">
+        <img class="col-md-4 col-sm-6" src="~/Content/images/f1.jpg" />
+        <img class="col-md-4 col-sm-6" src="~/Content/images/f2.jpg" />
+        <img class="col-md-4 col-sm-6" src="~/Content/images/f3.jpg" />
+    </div>
+</div>
+
+

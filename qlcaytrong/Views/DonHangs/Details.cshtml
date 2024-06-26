@@ -1,0 +1,90 @@
+﻿@model IEnumerable<DonHang>
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="body fix-width scroll-inner" style="margin-top: 50px;">
+    <table class="table table-striped">
+        <tr>
+            <th>
+@*                @Html.DisplayNameFor(model => model.Makh)
+*@                Số đơn
+            </th>
+            <th>
+@*                @Html.DisplayNameFor(model => model.Thanhtoan)
+*@                Thanh toán
+            </th>
+            <th>
+@*                @Html.DisplayNameFor(model => model.Giaohang)
+*@                Giao hàng
+            </th>
+            <th>
+@*                @Html.DisplayNameFor(model => model.Ngaydat)
+*@                Ngày đặt
+            </th>
+            <th>
+@*                @Html.DisplayNameFor(model => model.Ngaygiao)
+*@                Ngày giao
+            </th>
+
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Makh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thanhtoan)
+                </td>
+                <td>
+                    @if (item.Giaohang == "chờ xử lý")
+                    {
+                        <div style="color: #007bff;">@item.Giaohang</div>
+                    }
+                    else if (item.Giaohang == "đang xử lý")
+                    {
+                        <div style="color: orange;">@item.Giaohang</div>
+                    }
+                    else if (item.Giaohang == "đang giao")
+                    {
+                        <div style="color: forestgreen;">@item.Giaohang</div>
+                    }
+                    else if (item.Giaohang == "giao thành công")
+                    {
+                        <div style="color: green;">@item.Giaohang</div>
+                    }
+                    else if (item.Giaohang == "hủy")
+                    {
+                        <div style="color: red;">@item.Giaohang</div>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ngaydat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ngaygiao)
+                </td>
+
+                <td>
+                    <a asp-action="ChiTietDonHang" asp-route-id="@item.Madon" class="btn btn-primary">Chi tiết đơn hàng</a>
+                </td>
+
+                @*@if (item.Giaohang == "chờ xử lý")
+                {
+                    <td>
+                        @Html.ActionLink("hủy đơn", "HuyDon", new { id = item.Madon })
+                    </td>
+                }*@
+
+            </tr>
+        }
+       
+    </table>
+
+</div>
